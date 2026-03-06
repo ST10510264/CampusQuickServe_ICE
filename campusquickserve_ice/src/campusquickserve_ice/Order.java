@@ -25,5 +25,20 @@ public class Order {
         this.quantity = quantity;
         this.pricePerItem = pricePerItem;
     }
+    
+   // Calculate subtotal
+public double calculateSubtotal() {
+    return quantity * pricePerItem;
+}
+
+// Calculate VAT
+public double calculateVAT() {
+    return calculateSubtotal() * VAT_RATE;
+}
+
+// Calculate total
+public double calculateTotal() {
+    return calculateSubtotal() + calculateVAT();
+}
 
 }
