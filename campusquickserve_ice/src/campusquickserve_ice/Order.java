@@ -26,19 +26,33 @@ public class Order {
         this.pricePerItem = pricePerItem;
     }
     
-   // Calculate subtotal
+    // Calculate subtotal
 public double calculateSubtotal() {
     return quantity * pricePerItem;
 }
 
 // Calculate VAT
 public double calculateVAT() {
-    return calculateSubtotal() * VAT_RATE;
+
+    double afterDiscount = calculateSubtotal() - calculateDiscount();
+
+    return afterDiscount * VAT_RATE;
 }
 
 // Calculate total
 public double calculateTotal() {
-    return calculateSubtotal() + calculateVAT();
+
+    return calculateSubtotal() - calculateDiscount() + calculateVAT();
+}
+
+// Calculate discount if quantity > 3
+public double calculateDiscount() {
+
+    if (quantity > 3) {
+        return calculateSubtotal() * 0.10;
+    }
+
+    return 0;
 }
 
 }
